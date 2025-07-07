@@ -14,6 +14,7 @@ import os
 from pathlib import Path
 from datetime import timedelta
 import dj_database_url  # Asegúrate de tenerlo instalado
+from decouple import config
 
 # JWT config
 SIMPLE_JWT = {
@@ -28,11 +29,9 @@ SIMPLE_JWT = {
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Security
-SECRET_KEY = os.getenv('SECRET_KEY', 'insecure-dev-key')  # Nunca dejes la clave fija
-DEBUG = os.getenv('DEBUG', 'False') == 'True'
-
-ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '*').split(',')
-
+SECRET_KEY = config('SECRET_KEY', default='insecure-dev-key')
+DEBUG = config('DEBUG', default=False, cast=bool)
+ALLOWED_HOSTS = config('ALLOWED_HOSTS', default='*').split(',')
 # Apps
 INSTALLED_APPS = [
     'django.contrib.admin',
