@@ -1,8 +1,5 @@
 #!/usr/bin/env bash
 
-echo "📦 Instalando dependencias..."
-pip install -r requirements.txt
-
 echo "⏳ Aplicando migraciones de base de datos..."
 python manage.py migrate --noinput
 echo "✅ Migraciones aplicadas"
@@ -19,4 +16,7 @@ else:
     print("🟢 El superusuario ya existe")
 END
 
-echo "🎉 Build finalizado correctamente"
+# Recolectar archivos estáticos
+echo "📦 Recolectando archivos estáticos..."
+python manage.py collectstatic --noinput
+echo "✅ Archivos estáticos recolectados"
