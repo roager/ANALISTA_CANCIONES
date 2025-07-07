@@ -1,0 +1,38 @@
+/* Estilos básicos */
+body {
+  font-family: Arial, sans-serif;
+  margin: 2rem;
+  background-color: #f7f7f7;
+}
+
+form {
+  background: #fff;
+  padding: 1rem;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+input, button {
+  display: block;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  width: 100%;
+}
+
+nav a {
+  margin-right: 1rem;
+  text-decoration: none;
+  font-weight: bold;
+  color: #0366d6;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+thead th, tbody td {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  text-align: left;
+}

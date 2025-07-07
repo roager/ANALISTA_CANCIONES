@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Historial</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <script defer src="{% static 'js/auth.js' %}"></script>
+
+  <script defer src="{% static 'js/historial.js' %}"></script>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    nav {
+      width: 100%;
+      background-color: #eee;
+      padding: 1rem;
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    img.cabecera {
+      width: 30vw;
+      max-width: 300px;
+      margin-top: 2rem;
+    }
+
+    h1 {
+      margin-top: 1rem;
+      text-align: center;
+    }
+
+    table {
+      width: 90%;
+      max-width: 1000px;
+      margin: 2rem auto;
+      border-collapse: collapse;
+      background-color: #fff;
+      border-radius: 6px;
+      overflow: hidden;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    th, td {
+      padding: 0.8rem;
+      text-align: center;
+      border-bottom: 1px solid #ccc;
+    }
+
+    th {
+      background-color: #eaeaea;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="/inicio">Inicio</a>
+    <a href="/buscar/">Buscar Letras</a>
+    <a href="/historial/">Ver Historial</a>
+    <a href="/positivas/">Canciones Positivas</a>
+    <a href="/negativas/">Canciones Negativas</a>
+    <a href="#" id="logout">Logout</a>
+  </nav>
+
+  <img src="{% static 'images/Historial2.png' %}" alt="Historial" class="cabecera">
+
+  <h1>Historial de Búsquedas</h1>
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th><th>Artista</th><th>Título</th><th>Fecha</th>
+        <th>+ Pos</th><th>+ Neu</th><th>+ Neg</th><th>Etiqueta</th><th>Análisis</th>
+      </tr>
+    </thead>
+    <tbody id="tabla-historial">
+      <!-- Contenido generado con JS -->
+    </tbody>
+  </table>
+
+</body>
+</html>

@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Buscar Canciones</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header img {
+      width: 30vw;
+      max-width: 300px;
+      height: auto;
+      margin-bottom: 2rem;
+    }
+
+    form {
+      width: 30vw;
+      min-width: 250px;
+      background-color: #fff;
+      padding: 1.5rem;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      font-weight: bold;
+      margin-top: 1rem;
+      text-align: left;
+    }
+
+    input {
+      padding: 0.5rem;
+      margin-top: 0.3rem;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+    }
+
+    button {
+      margin-top: 1.5rem;
+      padding: 0.7rem;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #0056b3;
+    }
+
+    nav {
+      margin-bottom: 2rem;
+    }
+
+    nav a {
+      margin-right: 1rem;
+      text-decoration: none;
+      color: #007BFF;
+      font-weight: bold;
+    }
+  </style>
+  <script defer src="{% static 'js/auth.js' %}"></script>
+
+  <script defer src="{% static 'js/buscar.js' %}"></script>
+  
+</head>
+<body>
+
+  <nav>
+    <a href="/inicio">Inicio</a>
+    <a href="/buscar/">Buscar Letras</a>
+    <a href="/historial/">Ver Historial</a>
+    <a href="/positivas/">Canciones Positivas</a>
+    <a href="/negativas/">Canciones Negativas</a>
+    <a href="#" id="logout">Logout</a>
+  </nav>
+
+  <header>
+    <img src="{% static 'images/BuscarCanciones.png' %}" alt="Buscar Canciones">
+    <h2 style="text-align: center; margin-top: 1rem;">Buscar Letra de Canciones</h2>
+  </header>
+
+  <form id="buscar-form">
+    <label for="artista">Artista:</label>
+    <input type="text" id="artista" name="artista" required>
+
+    <label for="titulo">Título:</label>
+    <input type="text" id="titulo" name="titulo" required>
+
+    <button type="submit">Buscar</button>
+  </form>
+
+</body>
+</html>

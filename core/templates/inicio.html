@@ -1,0 +1,91 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Inicio - Análisis de Canciones</title>
+  <script defer src="{% static 'js/auth.js' %}"></script>
+  <style>
+    body {
+      margin: 0;
+      padding: 2rem;
+      font-family: Arial, sans-serif;
+      background-color: #f8f9fa;
+      text-align: center;
+    }
+
+    header img {
+      width: 200px;
+      height: auto;
+      margin-bottom: 2rem;
+    }
+
+    .opciones {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+
+    .opcion {
+      width: 240px;
+      text-align: center;
+    }
+
+    .opcion img {
+      width: 100%;
+      height: auto;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+    }
+
+    .opcion img:hover {
+      transform: scale(1.05);
+    }
+
+    .opcion p {
+      margin-top: 0.5rem;
+      font-weight: bold;
+      color: #333;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Logo en cabecera -->
+  <header>
+    <img src="{% static 'images/logo.png' %}" alt="Logo de la App">
+  </header>
+
+
+
+  <!-- Opciones -->
+  <section class="opciones">
+    <div class="opcion">
+      <a href="/buscar">
+        <img src="{% static 'images/BuscarCanciones.png' %}" alt="Buscar">
+      </a>
+      <p>Buscar Letras de Canciones</p>
+    </div>
+    <div class="opcion">
+      <a href="/historial">
+        <img src="{% static 'images/Historial2.png' %}" alt="Historial">
+      </a>
+      <p>Ver el historial de Canciones Analizadas</p>
+    </div>
+    <div class="opcion">
+      <a href="/positivas">
+        <img src="{% static 'images/CancionesPositivas.png' %}" alt="Positivas">
+      </a>
+      <p>Canciones más Positivas</p>
+    </div>
+    <div class="opcion">
+      <a href="/negativas">
+        <img src="{% static 'images/CancionesNegativas.png' %}" alt="Negativas">
+      </a>
+      <p>Canciones más Negativas</p>
+    </div>
+  </section>
+
+</body>
+</html>
