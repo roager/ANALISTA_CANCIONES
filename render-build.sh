@@ -1,10 +1,16 @@
 #!/usr/bin/env bash
 
+echo "📦 Instalando dependencias..."
+pip install -r requirements.txt
+
 echo "⏳ Aplicando migraciones de base de datos..."
 python manage.py migrate --noinput
 echo "✅ Migraciones aplicadas"
 
-# (Opcional) Crear superusuario automáticamente si no existe
+echo "🧹 Recolectando archivos estáticos..."
+python manage.py collectstatic --noinput
+echo "✅ Archivos estáticos listos"
+
 echo "👤 Verificando superusuario..."
 python manage.py shell << END
 from django.contrib.auth import get_user_model
@@ -15,8 +21,3 @@ if not User.objects.filter(username='admin').exists():
 else:
     print("🟢 El superusuario ya existe")
 END
-
-# Recolectar archivos estáticos
-echo "📦 Recolectando archivos estáticos..."
-python manage.py collectstatic --noinput
-echo "✅ Archivos estáticos recolectados"
