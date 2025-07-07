@@ -1,7 +1,10 @@
 #!/usr/bin/env bash
+
+echo "📦 Instalando dependencias..."
+pip install -r requirements.txt
+
 echo "⏳ Aplicando migraciones de base de datos..."
 python manage.py migrate --noinput
-
 echo "✅ Migraciones aplicadas"
 
 # (Opcional) Crear superusuario automáticamente si no existe
@@ -15,3 +18,5 @@ if not User.objects.filter(username='admin').exists():
 else:
     print("🟢 El superusuario ya existe")
 END
+
+echo "🎉 Build finalizado correctamente"
