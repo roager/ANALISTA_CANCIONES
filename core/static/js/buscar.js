@@ -13,7 +13,7 @@ document.getElementById('buscar-form').addEventListener('submit', async (e) => {
   const titulo = e.target.titulo.value;
   const token = localStorage.getItem('access');
 
-  const response = await fetch('${API_BASE_URL}/api/songs/buscar-letra/', {
+  const response = await fetch(`${API_BASE_URL}/api/songs/buscar-letra/`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
