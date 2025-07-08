@@ -1,3 +1,7 @@
+const API_BASE_URL = window.location.hostname.includes('localhost')
+  ? 'http://localhost:8000'
+  : 'https://analista-de-canciones.onrender.com';
+
 document.getElementById('logout').addEventListener('click', () => {
   localStorage.clear();
   window.location.href = '/';
@@ -7,7 +11,7 @@ async function cargarCancionesNegativas() {
   const token = localStorage.getItem('access');
   const tabla = document.getElementById('tabla-negativas');
 
-  const response = await fetch('http://localhost:8000/api/songs/historial/', {
+  const response = await fetch('${API_BASE_URL}/api/songs/historial/', {
     headers: { 'Authorization': 'Bearer ' + token }
   });
 
@@ -40,7 +44,7 @@ async function cargarCancionesNegativas() {
 
 async function verFicha(id) {
   const token = localStorage.getItem('access');
-  const res = await fetch(`http://localhost:8000/api/songs/detalle/${id}/`, {
+  const res = await fetch(`${API_BASE_URL}/api/songs/detalle/${id}/`, {
     headers: { 'Authorization': 'Bearer ' + token }
   });
   const data = await res.json();

@@ -1,3 +1,7 @@
+const API_BASE_URL = window.location.hostname.includes('localhost')
+  ? 'http://localhost:8000'
+  : 'https://analista-de-canciones.onrender.com';
+
 document.getElementById('logout').addEventListener('click', () => {
   localStorage.clear();
   window.location.href = '/';
@@ -49,7 +53,7 @@ if (data && data.busqueda) {
     btn.style.width = '100%';
     btn.onclick = async () => {
       const token = localStorage.getItem('access');
-      const res = await fetch('http://localhost:8000/api/sentimientos/analizar/', {
+      const res = await fetch('${API_BASE_URL}/api/sentimientos/analizar/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
