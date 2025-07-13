@@ -43,7 +43,7 @@ if (data && data.busqueda) {
   titulo.innerHTML = `<strong>Título:</strong> ${b.titulo}`;
   div.appendChild(titulo);
 
-  // Si ya hay análisis, mostrarlo
+  // Mostrar análisis si existe
   if (analisisEsValido(a)) {
     const analisisDiv = document.createElement('div');
     analisisDiv.className = 'analisis-box';
@@ -57,7 +57,7 @@ if (data && data.busqueda) {
     `;
     div.appendChild(analisisDiv);
   } else {
-    // Si no hay análisis, mostrar botón para analizar
+    // Botón para analizar
     const btn = document.createElement('button');
     btn.textContent = 'Analizar Sentimientos';
     btn.style.margin = '10px 0';
@@ -89,7 +89,8 @@ if (data && data.busqueda) {
   letraTitulo.textContent = 'Letra de la Canción';
   div.appendChild(letraTitulo);
 
-  const letra = document.createElement('pre');
+  const letra = document.createElement('div');
+  letra.className = 'letra';  // Se aplicará estilo con white-space: pre-wrap
   letra.textContent = b.letra;
   div.appendChild(letra);
 } else {
