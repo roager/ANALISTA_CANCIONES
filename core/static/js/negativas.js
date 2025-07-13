@@ -3,7 +3,6 @@ const API_BASE_URL = isLocal
   ? 'http://localhost:8000'
   : 'https://analista-de-canciones.onrender.com';
 
-
 document.getElementById('logout').addEventListener('click', () => {
   localStorage.clear();
   window.location.href = '/';
@@ -13,7 +12,7 @@ async function cargarCancionesNegativas() {
   const token = localStorage.getItem('access');
   const tabla = document.getElementById('tabla-negativas');
 
-  const response = await fetch('${API_BASE_URL}/api/songs/historial/', {
+  const response = await fetch(`${API_BASE_URL}/api/songs/historial/`, {
     headers: { 'Authorization': 'Bearer ' + token }
   });
 
@@ -52,7 +51,7 @@ async function verFicha(id) {
   const data = await res.json();
   if (res.ok) {
     localStorage.setItem('cancion', JSON.stringify(data));
-    window.location.href = '/ficha';  // Redirección a la vista de ficha
+    window.location.href = '/ficha';
   } else {
     alert('No se pudo cargar ficha.');
   }

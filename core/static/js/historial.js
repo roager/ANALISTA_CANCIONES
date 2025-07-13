@@ -1,9 +1,10 @@
-const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+const isLocal =
+  window.location.hostname === 'localhost' ||
+  window.location.hostname === '127.0.0.1';
 
 const API_BASE_URL = isLocal
   ? 'http://localhost:8000'
   : 'https://analista-de-canciones.onrender.com';
-
 
 document.getElementById('logout').addEventListener('click', () => {
   localStorage.clear();
@@ -14,7 +15,7 @@ async function cargarHistorial() {
   const token = localStorage.getItem('access');
   const tabla = document.getElementById('tabla-historial');
 
-  const response = await fetch('${API_BASE_URL}/api/songs/historial/', {
+  const response = await fetch(`${API_BASE_URL}/api/songs/historial/`, {
     headers: { 'Authorization': 'Bearer ' + token }
   });
 
@@ -77,4 +78,5 @@ async function verFicha(id) {
     alert('No se pudo cargar ficha.');
   }
 }
+
 cargarHistorial();

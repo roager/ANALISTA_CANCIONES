@@ -12,7 +12,7 @@ async function cargarCancionesPositivas() {
   const token = localStorage.getItem('access');
   const tabla = document.getElementById('tabla-positivas');
 
-  const response = await fetch('${API_BASE_URL}/api/songs/historial/', {
+  const response = await fetch(`${API_BASE_URL}/api/songs/historial/`, {
     headers: { 'Authorization': 'Bearer ' + token }
   });
 
@@ -26,7 +26,6 @@ async function cargarCancionesPositivas() {
         !isNaN(c.analisis.puntaje_negativo)
       )
       .sort((a, b) => {
-        // Ordenar por positivo DESC, luego neutro DESC, luego negativo ASC
         if (b.analisis.puntaje_positivo !== a.analisis.puntaje_positivo) {
           return b.analisis.puntaje_positivo - a.analisis.puntaje_positivo;
         }
