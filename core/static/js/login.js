@@ -1,19 +1,23 @@
-const API_BASE_URL = window.location.hostname.includes('localhost')
+const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
+const API_BASE_URL = isLocal
   ? 'http://localhost:8000'
   : 'https://analista-de-canciones.onrender.com';
+
+console.log("🌐 API_BASE_URL usada:", API_BASE_URL);
+
 
 document.getElementById('login-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const username = e.target.username.value;
   const password = e.target.password.value;
 
-  const API_BASE_URL = window.location.hostname.includes('localhost')
-    ? '${API_BASE_URL}'
-    : 'https://analista-de-canciones.onrender.com';
+  console.log("🔗 API_BASE_URL usada:", API_BASE_URL);  // <-- línea para verificar
 
   const response = await fetch(`${API_BASE_URL}/api/usuarios/login/`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
     body: JSON.stringify({ username, password })
   });
 

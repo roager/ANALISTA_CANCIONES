@@ -13,8 +13,10 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 import os
 from pathlib import Path
 from datetime import timedelta
-import dj_database_url  # Asegúrate de tenerlo instalado
+import dj_database_url  
 from decouple import config
+from dotenv import load_dotenv
+load_dotenv()
 
 # JWT config
 SIMPLE_JWT = {
@@ -82,13 +84,27 @@ TEMPLATES = [
 WSGI_APPLICATION = 'core.wsgi.application'
 
 # Database
-DATABASES = {
-    'default': dj_database_url.config(
-        default=os.getenv('DATABASE_URL'),
-        conn_max_age=600,
-        ssl_require=True
-    )
-}
+DEBUG = os.getenv("DEBUG", "False") == "True"
+
+if DEBUG:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'music_analizer',
+            'USER': 'music_admin',
+            'PASSWORD': 'Musica2025%',
+            'HOST': 'localhost',
+            'PORT': '5432',
+        }
+    }
+else:
+    DATABASES = {
+        'default': dj_database_url.config(
+            default=os.getenv('DATABASE_URL'),
+            conn_max_age=600,
+            ssl_require=True
+        )
+    }
 
 # Password validators
 AUTH_PASSWORD_VALIDATORS = [
@@ -126,8 +142,13 @@ REST_FRAMEWORK = {
 }
 # CORS config
 CORS_ALLOW_CREDENTIALS = True
-CORS_ALLOW_ALL_ORIGINS = True
-#CORS_ALLOWED_ORIGINS = [
-#        "http://localhost:3000",  # o el puerto de tu frontend
-#       "https://analista-de-canciones.onrender.com",
-#]
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",  
+    "http://127.0.0.1:8000", # para desarrollo local
+    "https://analista-de-canciones.onrender.com",  # tu frontend en producción
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://analista-de-canciones.onrender.com",
+]

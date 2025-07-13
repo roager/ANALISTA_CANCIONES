@@ -1,6 +1,11 @@
-const API_BASE_URL = window.location.hostname.includes('localhost')
+const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+
+const API_BASE_URL = isLocal
   ? 'http://localhost:8000'
   : 'https://analista-de-canciones.onrender.com';
+
+console.log("🔍 API_BASE_URL usada para búsqueda:", API_BASE_URL);
+
 
 document.getElementById('logout').addEventListener('click', () => {
   localStorage.clear();
@@ -9,10 +14,11 @@ document.getElementById('logout').addEventListener('click', () => {
 
 document.getElementById('buscar-form').addEventListener('submit', async (e) => {
   e.preventDefault();
-  const artista = e.target.artista.value;
-  const titulo = e.target.titulo.value;
+  const artista = document.getElementById('artista').value.trim();
+  const titulo = document.getElementById('titulo').value.trim();
   const token = localStorage.getItem('access');
-
+  console.log("📦 Enviando:", JSON.stringify({ artista, titulo }));
+  
   const response = await fetch(`${API_BASE_URL}/api/songs/buscar-letra/`, {
     method: 'POST',
     headers: {
@@ -31,3 +37,5 @@ document.getElementById('buscar-form').addEventListener('submit', async (e) => {
     alert('Error al buscar: ' + (data.detail || JSON.stringify(data)));
   }
 });
+
+console.log("🌐 URL:", `${API_BASE_URL}/api/songs/buscar-letra/`);
