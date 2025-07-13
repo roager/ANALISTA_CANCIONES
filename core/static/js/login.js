@@ -3,12 +3,16 @@ const API_BASE_URL = isLocal
   ? 'http://localhost:8000'
   : 'https://analista-de-canciones.onrender.com';
 
+// Limpiar sesión activa al cargar la página de login
+localStorage.removeItem('access');
+localStorage.removeItem('refresh');
+
 document.getElementById('login-form').addEventListener('submit', async (e) => {
   e.preventDefault();
   const username = e.target.username.value;
   const password = e.target.password.value;
 
-  console.log("🔗 API_BASE_URL usada:", API_BASE_URL);  // <-- línea para verificar
+  console.log("🔗 API_BASE_URL usada:", API_BASE_URL);
 
   const response = await fetch(`${API_BASE_URL}/api/usuarios/login/`, {
     method: 'POST',
