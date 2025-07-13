@@ -90,9 +90,13 @@ if (data && data.busqueda) {
   div.appendChild(letraTitulo);
 
   const letra = document.createElement('div');
-  letra.className = 'letra';  // Se aplicará estilo con white-space: pre-wrap
-  letra.textContent = b.letra;
+  letra.className = 'letra';
+
+  const cleanedLyrics = b.letra.replace(/\n{2,}/g, '\n'); // Replace multiple \n with one
+  letra.innerText = cleanedLyrics;
+
   div.appendChild(letra);
+
 } else {
   div.textContent = 'No hay información para mostrar.';
 }
