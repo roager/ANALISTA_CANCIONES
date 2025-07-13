@@ -1,7 +1,10 @@
 // auth.js
-document.addEventListener('DOMContentLoaded', () => {
+function redirigirSiNoAutenticado() {
   const token = localStorage.getItem('access');
   if (!token) {
-    window.location.href = '/';  // Redirige al login si no hay token
+    window.location.replace('/');  // Redirección limpia a la raíz
   }
-});
+}
+
+// Puedes llamarla en cualquier JS protegido así:
+redirigirSiNoAutenticado();
