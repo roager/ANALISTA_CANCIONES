@@ -1,19 +1,15 @@
-// Detectar si es entorno local o producción
-const isLocal =
-  window.location.hostname === 'localhost' ||
-  window.location.hostname === '127.0.0.1';
+const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
 
 const API_BASE_URL = isLocal
-  ? 'http://127.0.0.1:8000'
+  ? 'http://localhost:8000'
   : 'https://analista-de-canciones.onrender.com';
 
-// Logout: limpia el localStorage y redirige
+  
 document.getElementById('logout').addEventListener('click', () => {
   localStorage.clear();
   window.location.href = '/';
 });
 
-// Verifica si los datos del análisis son válidos
 function analisisEsValido(a) {
   return a &&
     typeof a.etiqueta === 'string' &&
@@ -33,17 +29,14 @@ if (data && data.busqueda) {
   const b = data.busqueda;
   const a = data.analisis;
 
-  // Mostrar artista
   const artista = document.createElement('p');
   artista.innerHTML = `<strong>Artista:</strong> ${b.artista || 'Desconocido'}`;
   div.appendChild(artista);
 
-  // Mostrar título
   const titulo = document.createElement('p');
   titulo.innerHTML = `<strong>Título:</strong> ${b.titulo}`;
   div.appendChild(titulo);
 
-  // Si ya hay análisis, mostrarlo
   if (analisisEsValido(a)) {
     const analisisDiv = document.createElement('div');
     analisisDiv.className = 'analisis-box';
@@ -57,14 +50,13 @@ if (data && data.busqueda) {
     `;
     div.appendChild(analisisDiv);
   } else {
-    // Si no hay análisis, mostrar botón para analizar
     const btn = document.createElement('button');
     btn.textContent = 'Analizar Sentimientos';
     btn.style.margin = '10px 0';
     btn.style.width = '100%';
     btn.onclick = async () => {
       const token = localStorage.getItem('access');
-      const res = await fetch(`${API_BASE_URL}/api/sentimientos/analizar/`, {
+      const res = await fetch('${API_BASE_URL}/api/sentimientos/analizar/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -84,7 +76,6 @@ if (data && data.busqueda) {
     div.appendChild(btn);
   }
 
-  // Mostrar letra de la canción
   const letraTitulo = document.createElement('h3');
   letraTitulo.textContent = 'Letra de la Canción';
   div.appendChild(letraTitulo);
