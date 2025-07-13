@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Inicio - Análisis de Canciones</title>
   <link rel="icon" type="image/x-icon" href="{% static 'images/favicon.ico' %}">
   <script defer src="{% static 'js/auth.js' %}"></script>
@@ -14,6 +14,7 @@
       font-family: Arial, sans-serif;
       background-color: #f8f9fa;
       text-align: center;
+      box-sizing: border-box;
     }
 
     header img {
@@ -22,16 +23,19 @@
       margin-bottom: 2rem;
     }
 
+    /* Contenedor de opciones */
     .opciones {
       display: flex;
       justify-content: center;
-      gap: 3rem;
+      gap: 2rem;
       flex-wrap: wrap;
+      padding: 0 1rem;
     }
 
     .opcion {
-      width: 240px;
+      width: 180px;
       text-align: center;
+      flex-shrink: 0;
     }
 
     .opcion img {
@@ -50,6 +54,32 @@
       font-weight: bold;
       color: #333;
     }
+
+    /* Responsivo */
+    @media (max-width: 768px) {
+      body {
+        padding: 1rem;
+      }
+
+      .opciones {
+        gap: 1.5rem;
+      }
+
+      .opcion {
+        width: 45%;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .opcion {
+        width: 100%;
+      }
+
+      header img {
+        width: 60%;
+      }
+    }
+
   </style>
 </head>
 <body>
